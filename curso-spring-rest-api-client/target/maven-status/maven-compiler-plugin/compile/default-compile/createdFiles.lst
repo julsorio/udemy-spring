@@ -1,0 +1,7 @@
+com\udemy\spring\config\AppConfig.class
+com\udemy\spring\dto\Customer.class
+com\udemy\spring\service\RestClientService.class
+com\udemy\spring\config\SpringMvcDispatchServletInitializer.class
+com\udemy\spring\service\RestClientServiceImpl$1.class
+com\udemy\spring\service\RestClientServiceImpl.class
+com\udemy\spring\controller\RestClientController.class

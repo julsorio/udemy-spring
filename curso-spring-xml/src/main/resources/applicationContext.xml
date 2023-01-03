@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- add entry to enable component scanning -->
+
+	<context:component-scan
+		base-package="com.udemy.spring.*" />
+
+	<bean id="myLoggerConfig"
+		class="com.udemy.spring.logs.MyLoggerConfig" init-method="initLogger">
+		<property name="rootLoggerLevel" value="FINE" />
+		<property name="printedLoggerLevel" value="FINE" />
+	</bean>
+
+	<!-- BaseballCoach implementa la interface Coach -->
+	<bean id="myCoach" class="com.udemy.spring.coach.BaseballCoach" />
+
+	<!-- CyclingCoach implementa la interface Coach -->
+	<bean id="myCoach2" class="com.udemy.spring.coach.CyclingCoach" />
+
+    <!-- HappyFortuneService implementa la interface FortuneService -->
+	<bean id="myFortuneService"
+		class="com.udemy.spring.service.HappyFortuneService" />
+
+	<!-- inyeccion de myFortuneService en el constructor -->
+	<bean id="myCoach3" class="com.udemy.spring.coach.SoccerCoach">
+		<constructor-arg ref="myFortuneService" />
+	</bean>
+	
+	<bean id="myAdviceService" class="com.udemy.spring.service.MyAdviceService" />
+	
+	<!-- inyeccion de myAdviceService en el setter -->
+	<bean id="myCoach4" class="com.udemy.spring.coach.PingPongCoach">
+		<property name="adviceService" ref="myAdviceService" />
+	</bean>
+	
+	<bean id="myCoach5" class="com.udemy.spring.coach.ChessCoach" >
+		<property name="adviceService" ref="myAdviceService" />
+		<property name="emailAddress" value="chessmaster@hotmailcom" />
+		<property name="teamName" value="no name team" />
+	</bean>
+	
+	<context:property-placeholder location="classpath:sport.properties"/>
+	
+	<bean id="myCoach6" class="com.udemy.spring.coach.BasketballCoach">
+		<property name="adviceService" ref="myAdviceService" />
+		<property name="emailAddress" value="${test.email}" />
+		<property name="teamName" value="${test.team}" />
+	</bean>
+	
+	<bean id="myRandomFortuneService" class="com.udemy.spring.service.RandomFortuneServiceImpl" />
+	
+	<bean id="myCoach7" class="com.udemy.spring.coach.RunningCoach">
+		<property name="randomFortune" ref="myRandomFortuneService" />
+	</bean>
+	
+	<!-- bean scopes -->
+	<!-- a bean is singleton by default -->
+	<!-- singleton, prototype, request, session, global-session -->
+	<!-- singleton, prototype non web -->
+	<!-- request, session, global-session for web applications -->
+</beans>

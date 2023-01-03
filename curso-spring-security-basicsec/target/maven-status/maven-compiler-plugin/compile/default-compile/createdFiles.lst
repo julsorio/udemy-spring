@@ -1,0 +1,5 @@
+com\udemy\spring\security\config\AppConfig.class
+com\udemy\spring\security\config\SpringMvcDispatchServletInitializer.class
+com\udemy\spring\security\controller\AppController.class
+com\udemy\spring\security\config\SecurityConfig.class
+com\udemy\spring\security\config\SecurityWebAppInitializer.class
